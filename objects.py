@@ -27,7 +27,6 @@ class PricingManager:
         }
     }
 
-    internal_distance_rate_manager = InternalDistanceRateManager()
 
     @staticmethod
     def __find_base_rate(class_type : ClassType, discount_rate : DiscountRate):
@@ -39,7 +38,7 @@ class PricingManager:
     @staticmethod
     def calculate_price(from_station : Station, to_station: Station, discount_rate : DiscountRate, class_type : ClassType, is_retour) -> float:
         base_rate = PricingManager.__find_base_rate(class_type, discount_rate)
-        distance_rate = internal_distance_rate_manager.rate_between_stations(from_station, to_station)
+        distance_rate = InternalDistanceRateManager().rate_between_stations(from_station, to_station)
         price = base_rate * 0.02 * distance_rate
         price = round(price, 2)
         if is_retour:
