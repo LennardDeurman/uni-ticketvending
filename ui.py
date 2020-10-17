@@ -1,9 +1,4 @@
-from tariefeenheden import Tariefeenheden
 import tkinter as tk
-from pricing_table import PricingTable
-from creditcard import CreditCard
-from debitcard import DebitCard
-from coin_machine import IKEAMyntAtare2000
 from ui_info import UIPayment, UIClass, UIWay, UIDiscount, UIPayment, UIInfo
 
 
@@ -23,7 +18,7 @@ class UI(tk.Frame):
 		menubar.add_cascade(label="File", menu=fileMenu)
 
 		# retrieve the list of stations
-		data2 = Tariefeenheden.get_stations()
+		data2 = ["Amsterdam", "Rotterdam", "Nieuwegein"]
 
 		stations_frame = tk.Frame(self.master, highlightbackground="#cccccc", highlightthickness=1)
 		stations_frame.pack(fill=tk.BOTH, expand=1, padx=10, pady=10)
@@ -94,7 +89,7 @@ class UI(tk.Frame):
 
 
 def main():
-
+ 
 	root = tk.Tk()
 	UI(root)
 
