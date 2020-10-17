@@ -13,56 +13,6 @@ class UI(tk.Frame):
 		tk.Frame.__init__(self, master)
 		self.widgets()
 
-	def handle_payment(self, info: UIInfo):
-
-		# **************************************
-		# Below is the code you need to refactor
-		# **************************************
-
-		# get number of tariefeenheden
-		tariefeenheden: int = Tariefeenheden.get_tariefeenheden(info.from_station, info.to_station)
-
-		# compute the column in the table based on choices
-		table_column = 0
-		if info.travel_class == UIClass.FirstClass:
-			table_column = 3
-
-		# then, on the discount
-		if info.discount == UIDiscount.TwentyDiscount:
-			table_column += 1
-		elif info.discount == UIDiscount.FortyDiscount:
-			table_column += 2
-
-		# compute price
-		price: float = PricingTable.get_price (tariefeenheden, table_column)
-		if info.way == UIWay.Return:
-			price *= 2
-
-		# add 50 cents if paying with credit card
-		if info.payment == UIPayment.CreditCard:
-			price += 0.50
-		
-		# pay
-		if info.payment == UIPayment.CreditCard:
-			c = CreditCard()
-			c.connect()
-			ccid: int = c.begin_transaction(round(price, 2))
-			c.end_transaction(ccid)
-			c.disconnect()
-		elif info.payment == UIPayment.DebitCard:
-			d = DebitCard()
-			d.connect()
-			dcid: int = d.begin_transaction(round(price, 2))
-			d.end_transaction(dcid)
-			d.disconnect()
-		elif info.payment == UIPayment.Cash:
-			coin = IKEAMyntAtare2000()
-			coin.starta()
-			coin.betala(int(round(price * 100)))
-			coin.stoppa()
-
-#region UI Set-up below -- you don't need to change anything
-
 	def widgets(self):
 		self.master.title("Ticket machine")
 		menubar = tk.Menu(self.master)
@@ -123,9 +73,11 @@ class UI(tk.Frame):
 		tk.Button(self.master, text="Pay", command=self.on_click_pay).pack(side=tk.RIGHT, ipadx=10, padx=10, pady=10)
 
 		self.pack(fill=tk.BOTH, expand=1)
-	
+
+
 	def on_click_pay(self):
-		self.handle_payment(self.get_ui_info())
+		ui_info = self.get_ui_info()
+		
 
 	def get_ui_info(self) -> UIInfo:
 		return UIInfo(from_station=self.from_station.get(),
@@ -134,7 +86,7 @@ class UI(tk.Frame):
 			way=self.way.get(),
 			discount=self.discount.get(),
 			payment=self.payment.get())
-			
+
 	def on_exit(self):
 		self.quit()
 
