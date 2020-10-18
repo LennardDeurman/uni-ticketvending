@@ -1,4 +1,4 @@
-from template.payments.card import Card
+from payments.card import Card
 from tkinter import messagebox
 
 # Mock DebitCard implementation

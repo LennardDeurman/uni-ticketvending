@@ -21,12 +21,13 @@ class TicketSpecification(Specification):
     class_type : ClassType
     discount : DiscountRate
 
-    def __init__(self, validity_date : datetime, is_retour : bool, arrival : Station, departure : Station, discount : DiscountRate):
+    def __init__(self, validity_date : datetime, is_retour : bool, arrival : Station, departure : Station, discount : DiscountRate, class_type : ClassType):
         self.validity_date = validity_date
         self.is_retour = is_retour
         self.arrival = arrival
         self.departure = departure
         self.discount = discount
+        self.class_type = class_type
 
     def calculate_price(self) -> float:
         return PricingManager().calculate_price(
@@ -44,3 +45,6 @@ class LineItem:
     def __init__(self, specification : Specification, quantity : int):
         self.specification = specification
         self.quantity = quantity
+
+    def calculate_price(self) -> float:
+        return self.quantity * self.specification.calculate_price()

@@ -1,17 +1,10 @@
 from enum import IntEnum
+from orders.enums import ClassType, DiscountRate
 
-class UIClass(IntEnum):
-	FirstClass = 1
-	SecondClass = 2
 
 class UIWay(IntEnum):
 	OneWay = 1
 	Return = 2
-
-class UIDiscount(IntEnum):
-	NoDiscount = 1
-	TwentyDiscount = 2
-	FortyDiscount = 3
 
 class UIPayment(IntEnum):
 	DebitCard = 1
@@ -21,15 +14,19 @@ class UIPayment(IntEnum):
 class UIInfo:
 	from_station: str = ""
 	to_station: str = ""
-	travel_class: UIClass = UIClass.SecondClass
+	travel_class: ClassType = ClassType.SecondClass
 	way: UIWay = UIWay.OneWay
-	discount: UIDiscount.NoDiscount
-	payment: UIPayment.Cash
+	discount: DiscountRate = DiscountRate.NoDiscount
+	payment: UIPayment
 
-	def __init__(self, from_station: str, to_station: str, travel_class: UIClass, way: UIWay, discount: UIDiscount, payment: UIPayment):
+	def __init__(self, from_station: str, to_station: str, travel_class: ClassType, way: UIWay, discount: DiscountRate, payment: UIPayment):
 		self.from_station = from_station
 		self.to_station = to_station
 		self.travel_class = travel_class
 		self.way = way
 		self.discount = discount
 		self.payment = payment
+
+	@property
+	def is_retour(self):
+		return self.way == UIWay.Return
