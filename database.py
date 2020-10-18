@@ -10,12 +10,18 @@ class DatabaseObject:
 		self.date_created = datetime.now()
 		self.is_modified = False
 
+	def parse(self, dictionary:dict): #Used for updating TODO: to be implemented 
+		pass
+	
+	def to_dict(self): #Used for saving and updating existing objects
+		return {}
+
 
 class Database(Generic[T]):
 
-	__saved_objects : List[T] = list()
-
-	__scheduled_objects : List[T] = list()
+	def __init__(self):
+		self.__saved_objects = list()
+		self.__scheduled_objects = list()
 
 
 	def schedule_objects(self, objects : List[T]):

@@ -116,15 +116,7 @@ class UI(tk.Frame):
 
 		order_price = new_order.calculate_price()
 		payment_response = self.handle_payment(order_price, ui_info.payment)
-		
 		self.order_register.finish(new_order, payment_response=payment_response)		
-
-		
-	
-		
-
-
-		
 
 	def get_ui_info(self) -> UIInfo:
 		return UIInfo(from_station=self.from_station.get(),

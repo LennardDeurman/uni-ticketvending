@@ -10,6 +10,7 @@ class Order(DatabaseObject):
     payment_response : PaymentResponse
 
     def __init__(self):
+        super().__init__()
         self.line_items = list()
         self.is_finished = False
         self.payment_response = None

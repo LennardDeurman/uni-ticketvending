@@ -38,6 +38,7 @@ class StationDatabase(Database[Station]):
 		self.write()
 
 	def __init__(self):
+		super().__init__()
 		self.__init_dummies()
 		
     
