@@ -1,6 +1,6 @@
-from template.pricing.internal_distance_rate_manager import InternalDistanceRateManager
-from template.stations.station import Station
-from template.orders.enums import DiscountRate, ClassType
+from pricing.internal_distance_rate_manager import InternalDistanceRateManager
+from stations.station import Station
+from orders.enums import DiscountRate, ClassType
 
 class PricingManager:
 

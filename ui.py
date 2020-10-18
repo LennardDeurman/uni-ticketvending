@@ -1,6 +1,32 @@
 import tkinter as tk
 from ui_info import UIPayment, UIClass, UIWay, UIDiscount, UIPayment, UIInfo
 
+from typing import TypeVar, Generic, List
+from orders.order import Order
+from stations.station import Station
+
+T = TypeVar('T')
+
+class Register(Generic[T]):
+
+	def find_all(self) -> List[T]:
+		pass
+	
+	def add_new(self) -> T:
+		pass
+	
+	def commit(self, objects: List[T]):
+		pass
+
+class OrderRegister(Register[Order]):
+	
+	def finish(self, order: Order):
+		pass
+
+class StationRegister(Register[Station]):
+	pass
+
+
 
 class UI(tk.Frame):
 

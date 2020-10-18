@@ -1,4 +1,4 @@
-from template.stations.station import Station
+from stations.station import Station
 class InternalDistanceRateManager:
 
     def __init__(self):

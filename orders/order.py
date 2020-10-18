@@ -1,5 +1,5 @@
-from template.orders.lineitem import LineItem
-from template.database_object import DatabaseObject
+from orders.lineitem import LineItem
+from database_object import DatabaseObject
 from typing import List
 
 class Order(DatabaseObject):

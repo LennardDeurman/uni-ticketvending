@@ -1,4 +1,4 @@
-from template.database_object import DatabaseObject
+from database_object import DatabaseObject
 class Station(DatabaseObject):
 
     name : str

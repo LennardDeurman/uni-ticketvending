@@ -1,9 +1,9 @@
 
 from abc import ABC, abstractmethod
 from datetime import datetime
-from template.pricing.pricing_manager import PricingManager
-from template.stations.station import Station
-from template.orders.enums import DiscountRate, ClassType 
+from pricing.pricing_manager import PricingManager
+from stations.station import Station
+from orders.enums import DiscountRate, ClassType 
 
 
 class Specification:
